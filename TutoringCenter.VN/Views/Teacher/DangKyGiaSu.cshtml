@@ -1,0 +1,122 @@
+﻿@using TutoringCenter.VN.Models
+@model Teacher
+@{
+    Layout = "~/Views/Shared/_MetaLayout.cshtml";
+    ViewData["Title"] = "Đăng ký gia sư";
+    string message = ViewData["ERROR_NOTIFY"] as string;
+}
+
+<style>
+    .name-title {
+        margin-top: 20px;
+    }
+
+    div#relative {
+        position: relative;
+        padding-bottom: 70px;
+        padding-top: 10px;
+    }
+
+    div#thisDiv {
+        position: absolute;
+        left: 50%;
+        transform: translateX(50%);
+        -webkit-transform: translateX(-50%);
+    }
+</style>
+
+<div class="our-customer section-padd-top30">
+    <div class="container-fluid">
+
+        <div class="our-customer-wrapper">
+            <!-- Section Tittle -->
+            <div class="row d-flex justify-content-center">
+                <div class="col-xl-12">
+                    <div>
+                        <h2 style="color: #ffffff; background-color: #802eb7"><strong>Đăng ký gia sư</strong></h2>
+                    </div>
+                </div>
+                <div class="col-xl-8">
+                    <div class="section-slogan">
+                        <div class="text-top">Chu đáo - Nhiệt tình - Tận tâm</div>
+                    </div>
+                </div>
+            </div>
+            <form method="post" asp-action="DangKyGiaSu" asp-controller="Teacher" enctype="multipart/form-data">
+                <label style="color:red">@message</label>
+                <input asp-for="TId" type="text" class="form-control" hidden>
+                <div>
+                    <div class="input-group col-xl-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Hình ảnh</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="avatar2">
+                            <label class="custom-file-label" for="inputGroupFile01">Chọn tệp tin</label>
+                        </div>
+                    </div>
+                    <div class="col-xl-6" style="float:right">
+                        @if (!string.IsNullOrEmpty(Model.Avatar))
+                        {
+                            <img src="@Model.Avatar" style="width:300px; float:right" />
+                        }
+                        <input asp-for="Avatar" type="text" hidden>
+                    </div>
+                </div>
+                
+                <h5 class="name-title col-xl-6">Tên giáo viên</h5>
+                <input asp-for="DisplayName" type="text" class="form-control col-xl-6" placeholder="Tên giáo viên">
+                <h5 class="name-title col-xl-6">CMND</h5>
+                <input asp-for="CMND" type="text" class="form-control col-xl-6" placeholder="CMND">
+                <h5 class="name-title col-xl-6">Email</h5>
+                <input asp-for="Email" type="text" class="form-control col-xl-6" placeholder="Email">
+                <h5 class="name-title col-xl-6">Ngày sinh</h5>
+                <input asp-for="NgaySinh" type="text" class="form-control col-xl-6" placeholder="Ngày sinh">
+                <h5 class="name-title col-xl-6">Quê quán</h5>
+                <input asp-for="QueQuan" type="text" class="form-control " placeholder="Quê quán">
+                <h5 class="name-title ">Số điện thoại</h5>
+                <input asp-for="SoDienThoai" type="text" class="form-control " placeholder="Số điện thoại">
+                <h5 class="name-title">CV</h5>
+                <input asp-for="Cv" type="text" class="form-control " placeholder="CV">
+                <h5 class="name-title">Khu vực giảng dạy</h5>
+                <input asp-for="KhuVucGiangDay" type="text" class="form-control " placeholder="Khu vực giảng dạy">
+                <h5 class="name-title">Mô tả</h5>
+                <textarea asp-for="Description" class="form-control" rows="2" id="tDescription"></textarea>
+                
+                <div id="relative">
+                    <div id="thisDiv">
+                        <button type="submit" class="btn btn-success" id="btn_submit">Đăng Ký</button>
+                    </div>
+                </div>
+                @Html.Raw(ViewBag.notification)
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <!--This page plugins -->
+    <script src="assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="dist/js/pages/datatable/datatable-basic.init.js"></script>
+    <script src="dist/js/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        function goBack() {
+            window.history.back()
+        }
+        $(document).ready(function () {
+            var path = document.location.pathname;
+            var directory = path.substring(path.indexOf('/'), path.lastIndexOf('/'));
+            directory = directory.substring(directory.indexOf('/'), directory.lastIndexOf('/'));
+            CKEDITOR.replace("tDescription", {
+                height: 600,
+                filebrowserUploadUrl: `${directory}/ImageUpload`,
+                filebrowserUploadMethod: "form"
+            });
+        });
+    </script>
+}
+<style>
+
+    .table td, .table th {
+        vertical-align: middle;
+    }
+</style>

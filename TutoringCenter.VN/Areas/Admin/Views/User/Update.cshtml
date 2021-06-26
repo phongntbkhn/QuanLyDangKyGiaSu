@@ -1,0 +1,118 @@
+﻿@using TutoringCenter.VN.Models
+@model User
+@{
+    ViewData["Title"] = "SỬA QUẢN TRỊ VIÊN";
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-7 align-self-center">
+            <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Sửa quản trị viên</h4>
+            <div class="d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb m-0 p-0">
+                        <li class="breadcrumb-item"><a href="." class="text-muted">Admin</a></li>
+                        <li class="breadcrumb-item text-muted active" aria-current="page">Trang chủ</li>
+                        <li class="breadcrumb-item text-muted active" aria-current="page">Quản trị viên</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="col-5 align-self-center">
+            <div class="customize-input float-right">
+                <button type="button" class="btn waves-effect waves-light btn-danger btn-rounded px-5" onclick="window.history.back()">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">SỬA QUẢN TRỊ VIÊN</h4>
+                    @if (Model.Avatar != null && Model.Avatar.Length > 0)
+                    {
+                        <div class="text-center">
+                            <img src="@Model.Avatar" class="mt-3 mb-3" style="width: 120px; height: 120px;" />
+                        </div>
+                    }
+                    <form method="post" asp-action="Upload" asp-controller="User" enctype="multipart/form-data">
+                        @Html.HiddenFor(x => x.UId)
+                        @Html.HiddenFor(x => x.Avatar)
+                        @Html.HiddenFor(x => x.CreateAt)
+                        @Html.HiddenFor(x => x.UpdateAt)
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Cập nhật ảnh</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="avatar">
+                                <label class="custom-file-label" for="inputGroupFile01">Chọn tệp tin</label>
+                            </div>
+                        </div>
+
+                        <h4 class="card-title mt-3">Tên tài khoản (A-Za-z0-9)</h4>
+                        <input asp-for="Username" type="text" class="form-control" id="prenametext" placeholder="Tên tài khoản">
+
+                        <h4 class="card-title mt-3">Mật khẩu</h4>
+                        <input asp-for="EncryptPassword" type="password" class="form-control" id="prenametext" placeholder="Mật khẩu" value="">
+
+                        <h4 class="card-title mt-3">Họ tên quản trị viên</h4>
+                        <input asp-for="DisplayName" type="text" class="form-control" id="prenametext" placeholder="Họ tên quản trị viên">
+
+                        <h4 class="card-title mt-3">Phân quyền cho tài khoản</h4>
+                        <div class="input-group mt-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">Quyền</label>
+                            </div>
+                            <select class="custom-select" asp-for="Role" asp-items="@TutoringCenter.VN.Utils.RoleMaps.GetSelectList()" value="@Model.Role">
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-block btn-rounded btn-success mt-5">CẬP NHẬT</button>
+                        @Html.Raw(ViewBag.notification)
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+@section Scripts {
+    <!--This page plugins -->
+    <script src="assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="dist/js/pages/datatable/datatable-basic.init.js"></script>
+    <script>function goBack() {
+            window.history.back()
+        }</script>
+}
+<style>
+
+    .table td, .table th {
+        vertical-align: middle;
+    }
+</style>

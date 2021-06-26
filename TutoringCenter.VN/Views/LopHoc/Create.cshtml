@@ -1,0 +1,152 @@
+﻿@using TutoringCenter.VN.Models;
+@model Course
+@{
+    Layout = "~/Views/Shared/_MetaLayout.cshtml";
+
+    var teacher = (Teacher)ViewBag.teacher;
+    ViewData["Title"] = "CẬP NHẬT LỚP HỌC";
+
+    List<SelectListItem> selectListItemsKhoi = new List<SelectListItem>()
+{
+        new SelectListItem(){ Value = "1", Text = "Khối 1"},
+        new SelectListItem(){ Value = "2", Text = "Khối 2"},
+        new SelectListItem(){ Value = "3", Text = "Khối 3"},
+        new SelectListItem(){ Value = "4", Text = "Khối 4"},
+        new SelectListItem(){ Value = "5", Text = "Khối 5"},
+        new SelectListItem(){ Value = "6", Text = "Khối 6"},
+        new SelectListItem(){ Value = "7", Text = "Khối 7"},
+        new SelectListItem(){ Value = "8", Text = "Khối 8"},
+        new SelectListItem(){ Value = "9", Text = "Khối 9"},
+        new SelectListItem(){ Value = "10", Text = "Khối 10"},
+        new SelectListItem(){ Value = "11", Text = "Khối 11"},
+        new SelectListItem(){ Value = "12", Text = "Khối 12"}
+    };
+
+    List<SelectListItem> selectListItemsLop = new List<SelectListItem>()
+{
+        new SelectListItem(){ Value = "1", Text = "A"},
+        new SelectListItem(){ Value = "2", Text = "B"},
+        new SelectListItem(){ Value = "3", Text = "C"},
+        new SelectListItem(){ Value = "4", Text = "D"}
+    };
+}
+
+<style>
+    .card-title {
+        padding-top: 5px !important;
+    }
+
+    .name-title {
+        margin-top: 20px;
+    }
+
+    div#relative {
+        position: relative;
+        padding-bottom: 70px;
+        padding-top: 10px;
+    }
+
+    div#thisDiv {
+        position: absolute;
+        left: 50%;
+        transform: translateX(50%);
+        -webkit-transform: translateX(-50%);
+    }
+</style>
+
+<div class="our-customer section-padd-top30">
+    <div class="container-fluid head_bg_2">
+
+        <div class="our-customer-wrapper">
+            <!-- Section Tittle -->
+            <div class="row d-flex justify-content-center">
+                <div class="col-xl-12">
+                    <div>
+                        <h2 style="color: #ffffff; background-color: #802eb7"><strong>Đăng ký gia sư</strong></h2>
+                    </div>
+                </div>
+                <div class="col-xl-8">
+                    <div class="section-slogan">
+                        <div class="text-top">Chu đáo - Nhiệt tình - Tận tâm</div>
+                    </div>
+                </div>
+            </div>
+            <form method="post" enctype="multipart/form-data">
+                <input type="text" class="form-control" id="TId" name="TId" value="@teacher.TId" placeholder="Tên khóa học" hidden>
+
+                <h4 class="card-title">Tên khóa học</h4>
+                <input asp-for="Name" type="text" class="form-control col-xl-6" id="prenametext" placeholder="Tên khóa học">
+                <h4 class="card-title">Khối học</h4>
+                <select asp-for="IdKhoi" class="form-control col-xl-6"
+                        asp-items="@selectListItemsKhoi">
+                </select>
+                <br />
+
+                <h4 class="card-title" style="margin-top: 30px;">Học phí (VNĐ)</h4>
+                <input asp-for="Price" type="number" class="form-control col-xl-6" id="prenametext" placeholder="Học phí (VNĐ)">
+                <h4 class="card-title">Thời gian diễn ra</h4>
+                <input asp-for="LearningTime" type="text" class="form-control col-xl-6" id="prenametext" placeholder="Thời gian diễn ra">
+                <h4 class="card-title">Lịch học</h4>
+                <input asp-for="Schedule" type="text" class="form-control col-xl-6" id="prenametext" placeholder="Lịch học">
+                <h4 class="card-title mt-3">Ảnh tiêu biểu</h4>
+                <div>
+                    <div class="input-group col-xl-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Hình ảnh</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="FileImage">
+                            <label class="custom-file-label" for="inputGroupFile01">Chọn tệp tin</label>
+                        </div>
+                    </div>
+                    <div class="col-xl-6" style="float:right">
+                        @if (!string.IsNullOrEmpty(Model.Image))
+                        {
+                            <img src="@Model.Image" style="width:300px; float:right" />
+                        }
+                        <input asp-for="Image" type="text" hidden>
+                    </div>
+                </div>
+                <h4 class="card-title">Chi tiết</h4>
+                <textarea asp-for="Detail" class="form-control col-xl-6" id="cDetail" rows="3"></textarea>
+                <h4 class="card-title">Mô tả ngắn</h4>
+                <textarea asp-for="Description" class="form-control col-xl-6" rows="3" placeholder="Mô tả..."></textarea>
+
+
+                <div id="relative">
+                    <div id="thisDiv">
+                        <button type="submit" class="btn btn-success" id="btn_submit">THÊM MỚI</button>
+                    </div>
+                </div>
+                @Html.Raw(ViewBag.notification)
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <!--This page plugins -->
+    <script type="text/javascript">
+        function goBack() {
+            window.history.back()
+        }
+        $(document).ready(function () {
+            var path = document.location.pathname;
+            var directory = path.substring(path.indexOf('/'), path.lastIndexOf('/'));
+            directory = directory.substring(directory.indexOf('/'), directory.lastIndexOf('/'));
+            CKEDITOR.replace("cDetail", {
+                height: 600,
+                filebrowserUploadUrl: `${directory}/ImageUpload`,
+                filebrowserUploadMethod: "form"
+            });
+        });</script>
+}
+<style>
+
+    .table td, .table th {
+        vertical-align: middle;
+    }
+
+    .custom-select {
+        color: #000;
+    }
+</style>

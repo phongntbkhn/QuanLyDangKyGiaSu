@@ -1,0 +1,186 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="Appco tutoring center welcomes you">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @*<link rel="manifest" crossorigin="use-credentials" href="site.webmanifest">*@
+    <link rel="shortcut icon" type="image/x-icon" href="~/Landing/assets/img/logo/logo.png">
+    <title>@ViewData["Title"] | TutoringCenter.vn</title>
+    <!-- CSS here -->
+    <link rel="stylesheet" href="~/Landing/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Landing/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Landing/assets/css/flaticon.css">
+    <link rel="stylesheet" href="~/Landing/assets/css/slicknav.css">
+    <link rel="stylesheet" href="~/Landing/assets/css/animate.min.css">
+    <link rel="stylesheet" href="~/Landing/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Landing/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="~/Landing/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="~/Landing/assets/css/slick.css">
+    <link rel="stylesheet" href="~/Landing/assets/css/nice-select.css">
+    <link rel="stylesheet" href="~/Landing/assets/css/style.css">
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=836551539864441&autoLogAppEvents=1" nonce="aN6WUBFJ"></script>
+    <!-- Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="~/Landing/assets/img/logo/logo.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+
+    <header>
+        <!-- Header Start -->
+        <div class="header-area header-transparrent ">
+            <div class="main-header header-sticky">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <!-- Logo -->
+                        <div class="col-xl-2 col-lg-2 col-md-2">
+                            <div class="logo">
+                                <a href="/Home"><img src="~/Landing/assets/img/logo/logo.png" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-10 col-lg-10 col-md-10">
+                            <!-- Main-menu -->
+                            @{
+                                @await Component.InvokeAsync("HeaderMenu");
+                            }
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none">abc</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    @RenderBody()
+    <footer>
+
+        <!-- Footer Start-->
+        <div class="footer-main">
+            <div class="footer-area footer-padding">
+                <div class="container">
+                    <div class="row  justify-content-between">
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="single-footer-caption mb-30">
+                                <!-- logo -->
+                                <div class="footer-logo">
+                                    <a href="index.html"><img src="~/Landing/assets/img/logo/logo2_footer.png" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Thông tin liên hệ</h4>
+                                    <ul>
+                                        <li><a href="#">tutoring@edu.com</a></li>
+                                        <li><a href="#">+44 (0)1865 818403</a></li>
+                                        <li>
+                                            <a href="#">
+                                                Tầng 14 - The Landmark 72<br>
+                                                Hà Nội, Việt Nam<br>
+                                                United Kingdom
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="social_icon">
+                                                    <a href="#"> <i class="ti-facebook"></i> </a>
+                                                    <a href="#"> <i class="ti-twitter-alt"></i> </a>
+                                                    <a href="#"> <i class="ti-instagram"></i> </a>
+                                                    <a href="#"> <i class="ti-skype"></i> </a>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Theo Dõi chúng tôi</h4>
+                                    <div class="fb-page" data-href="https://www.facebook.com/hiphoplofi/" data-tabs="timeline" data-width="600" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/hiphoplofi/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/hiphoplofi/">Lo-fi</a></blockquote></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Copy-Right -->
+                    <div class="row align-items-center">
+                        <div class="col-xl-12 ">
+                            <div class="footer-copy-right">
+                                <p>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>
+                                        document.write(new Date().getFullYear());
+                                    </script> giasuapco.com <i class="ti-heart"
+                                                               aria-hidden="true"></i> by <a href="https://colorlib.com"
+                                                                                             target="_blank">Colorlib</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+
+    </footer>
+
+    <!-- JS here -->
+    <!-- All JS Custom Plugins Link Here here -->
+    <script src="~/Landing/assets/js/vendor/modernizr-3.5.0.min.js"></script>
+
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="~/Landing/assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="~/Landing/assets/js/popper.min.js"></script>
+    <script src="~/Landing/assets/js/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="~/Landing/assets/js/jquery.slicknav.min.js"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="~/Landing/assets/js/owl.carousel.min.js"></script>
+    <script src="~/Landing/assets/js/slick.min.js"></script>
+    <!-- Date Picker -->
+    <script src="~/Landing/assets/js/gijgo.min.js"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="~/Landing/assets/js/wow.min.js"></script>
+    <script src="~/Landing/assets/js/animated.headline.js"></script>
+    <script src="~/Landing/assets/js/jquery.magnific-popup.js"></script>
+
+    <!-- Scrollup, nice-select, sticky -->
+    <script src="~/Landing/assets/js/jquery.scrollUp.min.js"></script>
+    <script src="~/Landing/assets/js/jquery.nice-select.min.js"></script>
+    <script src="~/Landing/assets/js/jquery.sticky.js"></script>
+
+    <!-- contact js -->
+    <script src="~/Landing/assets/js/contact.js"></script>
+    <script src="~/Landing/assets/js/jquery.form.js"></script>
+    <script src="~/Landing/assets/js/jquery.validate.min.js"></script>
+    <script src="~/Landing/assets/js/mail-script.js"></script>
+    <script src="~/Landing/assets/js/jquery.ajaxchimp.min.js"></script>
+
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="~/Landing/assets/js/plugins.js"></script>
+    <script src="~/Landing/assets/js/main.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>

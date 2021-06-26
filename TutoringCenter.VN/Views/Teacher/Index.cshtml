@@ -1,0 +1,55 @@
+﻿@using TutoringCenter.VN.Models
+@model Teacher
+@{
+    Layout = "~/Views/Shared/_MetaLayout.cshtml";
+    ViewData["Title"] = "Index";
+    IEnumerable<Teacher> teacher = ViewBag.teacher;
+}
+<div class="our-customer section-padd-top30">
+    <div class="container-fluid">
+        
+        <div class="our-customer-wrapper">
+                <form asp-action="index" asp-controller="Teacher">
+                    <label for="fname">Tìm kiếm gia sư:</label>
+                    <input class="form-control" type="text" id="tenGiangVien" name="tenGiangVien"><br><br>
+                    <input style="margin-bottom: 5px" type="submit" value="Tìm kiếm">
+                </form>
+            <!-- Section Tittle -->
+            <div class="row d-flex justify-content-center">
+                <div class="col-xl-12">
+                    <div>
+                        <h2 style="color: #ffffff; background-color: #802eb7"><strong>Một số gia sư tiêu biểu</strong></h2>
+                    </div>
+                </div>
+                <div class="col-xl-8">
+                    <div class="section-slogan">
+                        <div class="text-top">Chu đáo - Nhiệt tình - Tận tâm</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                @for (int i = 0; i < teacher.Count(); i++)
+                {
+                    Teacher teachers = teacher.ElementAt(i);
+
+                    <div class="col-4">
+                        <div class="single-customer mb-100">
+                            <div class="what-img d-flex justify-content-center">
+                                <img src="@teachers.Avatar" alt="" width="100%" height="100%">
+                            </div>
+                            <div class="what-cap text-center">
+                                <h4><a href="#">@teachers.DisplayName</a></h4>
+                                <div class="shortcut">
+                                    @Html.Raw(@teachers.Description)
+                                </div>
+                                <a data-animation="fadeInLeft" data-delay="1.0s" href="/TeacherDetail/Index/@teachers.TId" class="btn radius-btn" tabindex="0" style="animation-delay: 1s;">Xem chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

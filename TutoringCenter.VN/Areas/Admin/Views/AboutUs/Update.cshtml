@@ -1,0 +1,105 @@
+﻿@using TutoringCenter.VN.Models;
+@model AboutUs
+@{
+    ViewData["Title"] = "CẬP NHẬT THÔNG TIN";
+}
+
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-7 align-self-center">
+            <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Cập nhật thông tin</h4>
+            <div class="d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb m-0 p-0">
+                        <li class="breadcrumb-item"><a href="." class="text-muted">Admin</a></li>
+                        <li class="breadcrumb-item text-muted active" aria-current="page">Trang chủ</li>
+                        <li class="breadcrumb-item text-muted active" aria-current="page">Về chúng tôi</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="col-5 align-self-center">
+            <div class="customize-input float-right">
+                <button type="button" class="btn waves-effect waves-light btn-danger btn-rounded px-5" onclick="window.history.back()">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">CHỈNH SỬA THÔNG TIN</h4>
+                    <form method="post" asp-action="Update">
+                        <h4 class="card-title mt-3">Mô tả</h4>
+                        @Html.HiddenFor(x => x.AUId)
+                        @Html.HiddenFor(x => x.CreateAt)
+                        @Html.HiddenFor(x => x.UpdateAt)
+                        <textarea asp-for="Title" class="form-control" rows="3" id="auTitle"></textarea>
+                        <h4 class="card-title mt-3">Nội dung</h4>
+                        <textarea asp-for="Content" class="form-control" rows="3" id="auContent"></textarea>
+                        <button type="submit" class="btn btn-block btn-rounded btn-success mt-5">CẬP NHẬT</button>
+                        @Html.Raw(ViewBag.notification)
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+@section Scripts {
+    <!--This page plugins -->
+    <script src="assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="dist/js/pages/datatable/datatable-basic.init.js"></script>
+    <script src="dist/js/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+    function goBack() {
+            window.history.back()
+        }
+        $(document).ready(function () {
+            var path = document.location.pathname;
+            var directory = path.substring(path.indexOf('/'), path.lastIndexOf('/'));
+            directory = directory.substring(directory.indexOf('/'), directory.lastIndexOf('/'));
+            CKEDITOR.replace("auContent", {
+                height: 600,
+                filebrowserUploadUrl: `${directory}/ImageUpload`,
+                filebrowserUploadMethod: "form"
+            });
+            CKEDITOR.replace("auTitle", {
+                height: 600,
+                filebrowserUploadUrl: `${directory}/ImageUpload`,
+                filebrowserUploadMethod: "form"
+            });
+        });</script>
+}
+<style>
+
+    .table td, .table th {
+        vertical-align: middle;
+    }
+</style>

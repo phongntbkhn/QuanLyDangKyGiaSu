@@ -1,0 +1,124 @@
+﻿@using Microsoft.AspNetCore.Http
+@using TutoringCenter.VN.Models
+@model Course
+@{
+    Layout = "~/Views/Shared/_MetaLayout.cshtml";
+    ViewData["Title"] = "Index";
+    string dangKy = "0";
+    if (ViewData["dang_ky"] != null)
+    {
+        dangKy = ViewData["dang_ky"] as string;
+    }
+
+    var thongTinDK = new CourseStudent();
+    if (ViewData["thong_tin_dang_ky"] != null)
+    {
+        thongTinDK = ViewData["thong_tin_dang_ky"] as CourseStudent;
+    }
+
+    var id = Context.Session.GetString("_session_id");
+    var user_name = Context.Session.GetString("_session_name");
+    var role_home = Context.Session.GetString("_session_role");
+    var id_person = Context.Session.GetString("_session_personid");
+
+    List<SelectListItem> selectListItemsDanhGia = new List<SelectListItem>()
+    {
+        new SelectListItem(){ Value = "0", Text = "0 Điểm"},
+        new SelectListItem(){ Value = "1", Text = "1 Điểm"},
+        new SelectListItem(){ Value = "2", Text = "2 Điểm"},
+        new SelectListItem(){ Value = "3", Text = "3 Điểm"},
+        new SelectListItem(){ Value = "4", Text = "4 Điểm"},
+        new SelectListItem(){ Value = "5", Text = "5 Điểm"},
+        new SelectListItem(){ Value = "6", Text = "6 Điểm"},
+        new SelectListItem(){ Value = "7", Text = "7 Điểm"},
+        new SelectListItem(){ Value = "8", Text = "8 Điểm"},
+        new SelectListItem(){ Value = "9", Text = "9 Điểm"},
+        new SelectListItem(){ Value = "10", Text = "10 Điểm"},
+    };
+
+    if (thongTinDK != null && thongTinDK.CId > 0 && thongTinDK.Diem != null)
+    {
+        var diemSelect = selectListItemsDanhGia.Where(s => s.Value == thongTinDK.Diem.ToString()).FirstOrDefault();
+        diemSelect.Selected = true;
+    }
+
+    ViewData["da_dang_ky"] = "Học sinh đã đăng ký lớp học này!";
+}
+
+<style>
+    div#relative {
+        padding-bottom: 120px;
+        padding-top: 10px;
+    }
+
+    div#thisDiv {
+        position: absolute;
+        left: 50%;
+        transform: translateX(50%);
+        -webkit-transform: translateX(-50%);
+    }
+
+    *, ::after, ::before {
+        box-sizing: content-box !important; 
+    }
+</style>
+
+<div class="our-customer section-padd-top30">
+    <div class="container-fluid">
+        <div class="our-customer-wrapper">
+
+            <form method="post"  asp-controller="ChiTietLopHoc" asp-action="Index">
+                <input id="CId" name="CId" value="@ViewBag.course.CId" hidden />
+                <!-- Section Tittle -->
+                <div class="row d-flex justify-content-center">
+                    <div class="col-xl-12">
+                        <div>
+                            <h2 style="color: #ffffff; background-color: #802eb7"><strong>Chi tiết lớp học: @ViewBag.course.Name</strong></h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-7">
+                        <div class="section-slogan">
+                            <div class="text-top">Vui vẻ - hiệu quả</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="single-customer mb-100">
+                            <div class="what-img d-flex justify-content-center">
+                                <img src="@ViewBag.course.Image" alt="" width="100%" height="100%">
+                            </div>
+                            <div class="what-cap text-center">
+                                <h4><a href="#">@ViewBag.course.Name</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        @Html.Raw(@ViewBag.course.Description)
+                    </div>
+                </div>
+
+                @if ("4".Equals(role_home))
+                {
+                    <div id="relative">
+                        <div id="thisDiv">
+                            @if (dangKy.Equals("0"))
+                            {
+                                <button type="submit" class="btn btn-success">ĐĂNG KÝ HỌC</button>
+                            }
+                            else
+                            {
+                                <h4 class="card-title">Đánh giá lớp học</h4>
+                                <select id="DanhGiaDiem" name="DanhGiaDiem" class="form-control col-xl-6" style="margin:10px"
+                                        asp-items="@selectListItemsDanhGia">
+                                </select>
+                                <button type="submit" class="btn btn-success">ĐÁNH GIÁ LỚP HỌC</button>
+                            }
+                        </div>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+</div>
+

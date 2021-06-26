@@ -1,0 +1,105 @@
+﻿@using TutoringCenter.VN.Models;
+@model IEnumerable<News>
+@{
+    ViewData["Title"] = "TIN BÀI";
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-7 align-self-center">
+            <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Tin bài</h4>
+            <div class="d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb m-0 p-0">
+                        <li class="breadcrumb-item"><a href="." class="text-muted">Admin</a></li>
+                        <li class="breadcrumb-item text-muted active" aria-current="page">Tin tức</li>
+                        <li class="breadcrumb-item text-muted active" aria-current="page">Danh mục tin</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="col-5 align-self-center">
+            <div class="customize-input float-right">
+                <a type="button" class="btn waves-effect waves-light btn-success btn-rounded" href="News/Create">Thêm mới</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Danh sách danh mục tin tức</h4>
+                    <div class="table-responsive">
+                        <table id="multi_col_order"
+                               class="table table-striped table-bordered display no-wrap" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">STT</th>
+                                    <th class="text-center">Ảnh</th>
+                                    <th class="text-center">Tiêu đề</th>
+                                    <th class="text-center">Mô tả</th>
+                                    <th class="text-center">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.Count(); i++)
+                                {
+                                    News news = Model.ElementAt(i);
+                                    <tr>
+                                        <td class="text-center">@(i+1)</td>
+                                        <td>
+                                            <img src="@news.Image" style="max-width: 150px; max-height: 150px;" />
+                                        </td>
+                                        <td>@news.Title</td>
+                                        <td>@news.Description</td>
+                                        <td class="text-center">
+                                            <a type="button" class="btn waves-effect waves-light btn-primary" href="News/Update/@news.NId">Sửa</a>
+                                            <a type="button" class="btn waves-effect waves-light btn-danger" href="News/Delete/@news.NId">Xóa</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+@section Scripts {
+    <!--This page plugins -->
+    <script src="assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="dist/js/pages/datatable/datatable-basic.init.js"></script>
+}
+<style>
+
+    .table td, .table th {
+        vertical-align: middle;
+    }
+</style>

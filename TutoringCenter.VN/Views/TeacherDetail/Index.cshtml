@@ -1,0 +1,54 @@
+﻿@using TutoringCenter.VN.Models
+@model Teacher
+@{
+    Layout = "~/Views/Shared/_MetaLayout.cshtml";
+    ViewData["Title"] = "Index";
+}
+<div class="our-customer section-padd-top30">
+    <div class="container-fluid">
+        <div class="our-customer-wrapper">
+            <!-- Section Tittle -->
+            <div class="row d-flex justify-content-center">
+                <div class="col-xl-12">
+                    <div>
+                        <h2 style="color: #ffffff; background-color: #802eb7"><strong>Chi tiết gia sư @ViewBag.teacher.DisplayName</strong></h2>
+                    </div>
+                </div>
+                <div class="col-xl-8">
+                    <div class="section-slogan">
+                        <div class="text-top">Chu đáo - Nhiệt tình - Tận tâm</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="single-customer mb-100">
+                        <div class="what-img d-flex justify-content-center">
+                            <img src="@ViewBag.teacher.Avatar" alt="" width="100%" height="100%">
+                        </div>
+                        <div class="what-cap text-center">
+                            <h4><a href="#">@ViewBag.teacher.DisplayName</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div>
+                        <label>Công việc: </label>
+                        <span>@ViewBag.teacher.Cv</span>
+                    </div>
+                    <div>
+                        <label>Khu vực giảng dạy: </label>
+                        <span>@ViewBag.teacher.KhuVucGiangDay</span>
+                    </div>
+                    <div>
+                        <label>Mô tả: </label>
+                        <span>@ViewBag.teacher.Description</span>
+                    </div>
+                    @Html.Raw(@ViewBag.teacher.Description)
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+

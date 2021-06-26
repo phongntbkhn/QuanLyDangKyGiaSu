@@ -1,0 +1,173 @@
+﻿@{
+    Layout = null;
+    String? userAvatar = User.Claims.FirstOrDefault(c => c.Type == "AVATAR").Value;
+}
+    <ul id="sidebarnav">
+        @* ============================= MENU TỔNG QUÁT =============================== *@
+        <li class="sidebar-item">
+            <a class="sidebar-link sidebar-link" href="." aria-expanded="false">
+                <i data-feather="home" class="feather-icon"></i><span class="hide-menu">Tổng quát</span>
+            </a>
+        </li>
+        <li class="list-divider"></li>
+        @* ============================= END TỔNG QUÁT =============================== *@
+
+        @if (User.IsInRole("0") || User.IsInRole("1"))
+        {
+            @* ============================= MENU TIN TỨC =============================== *@
+            <li class="nav-small-cap"><span class="hide-menu">Tin tức</span></li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="./NewsCategory" aria-expanded="false">
+                    @*<i data-feather="tag" class="feather-icon"></i>*@<span class="hide-menu">
+                        Danh mục tin
+                    </span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link sidebar-link" href="./News/Create" aria-expanded="false">
+                    @*<i data-feather="message-square" class="feather-icon"></i>*@<span class="hide-menu">Viết bài</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link sidebar-link" href="./AboutUs" aria-expanded="false">
+                    @*<i data-feather="message-square" class="feather-icon"></i>*@<span class="hide-menu">Về chúng tôi</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link sidebar-link" href="./CommonQuestion" aria-expanded="false">
+                    @*<i data-feather="message-square" class="feather-icon"></i>*@<span class="hide-menu">Câu hỏi</span>
+                </a>
+            </li>
+            <li class="list-divider"></li>
+            @* ============================= END TIN TỨC =============================== *@
+        }
+
+        @if (User.IsInRole("0") || User.IsInRole("2"))
+        {
+            @* ============================= MENU ĐÀO TẠO =============================== *@
+            <li class="nav-small-cap"><span class="hide-menu">Đào tạo</span></li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="./Teacher" aria-expanded="false">
+                    @*<i data-feather="tag" class="feather-icon"></i>*@<span class="hide-menu">
+                        Giảng viên
+                    </span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link sidebar-link" href="./Course" aria-expanded="false">
+                    @*<i data-feather="message-square" class="feather-icon"></i>*@<span class="hide-menu">Lớp học</span>
+                </a>
+            </li>
+            @* <li class="sidebar-item">
+                <a class="sidebar-link sidebar-link" href="./EducationProgram" aria-expanded="false">
+                    <i data-feather="message-square" class="feather-icon"></i><span class="hide-menu">C.Trình đào tạo</span>
+                </a>
+            </li> *@
+            <li class="list-divider"></li>
+            @* ============================= END ĐÀO TẠO =============================== *@
+        }
+
+        @if (User.IsInRole("0"))
+        {
+            @* ============================= MENU NGƯỜI DÙNG =============================== *@
+            <li class="nav-small-cap"><span class="hide-menu">Quản trị viên</span></li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="./User" aria-expanded="false">
+                    @*<i data-feather="tag" class="feather-icon"></i>*@<span class="hide-menu">
+                        Quản trị viên
+                    </span>
+                </a>
+            </li>
+            @* <li class="sidebar-item">
+                <a class="sidebar-link sidebar-link" href="./EducationProgram" aria-expanded="false">
+                    <i data-feather="message-square" class="feather-icon"></i><span class="hide-menu">C.Trình đào tạo</span>
+                </a>
+            </li> *@
+            <li class="list-divider"></li>
+            @* ============================= END NGƯỜI DÙNG =============================== *@
+        }
+
+
+        @* ============================= MENU GIỚI THIỆU =============================== *@
+        @* <li class="nav-small-cap"><span class="hide-menu">Giới thiệu</span></li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="./Organization" aria-expanded="false">
+                <i data-feather="tag" class="feather-icon"></i><span class="hide-menu">
+                    Tổ chức
+                </span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link sidebar-link" href="./Services" aria-expanded="false">
+                <i data-feather="message-square" class="feather-icon"></i><span class="hide-menu">Dịch vụ</span>
+            </a>
+        </li>
+        <li class="list-divider"></li> *@
+        @* ============================= END GIỚI THIỆU =============================== *@
+
+        @* ============================= MENU TRANG CHỦ =============================== *@
+        @* <li class="nav-small-cap"><span class="hide-menu">Trang chủ</span></li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="./Owner" aria-expanded="false">
+                <i data-feather="tag" class="feather-icon"></i>
+                <span class="hide-menu">Sở hữu</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="./Logo" aria-expanded="false">
+                <i data-feather="tag" class="feather-icon"></i>
+                <span class="hide-menu">Ảnh thương hiệu</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="./Carousel" aria-expanded="false">
+                <i data-feather="tag" class="feather-icon"></i>
+                <span class="hide-menu">Carousel</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="./DevelopmentMotto" aria-expanded="false">
+                <i data-feather="tag" class="feather-icon"></i>
+                <span class="hide-menu">Ph.Châm phát triển</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="./ServiceMotto" aria-expanded="false">
+                <i data-feather="tag" class="feather-icon"></i>
+                <span class="hide-menu">Ph.Châm dịch vụ</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="./Partner" aria-expanded="false">
+                <i data-feather="tag" class="feather-icon"></i>
+                <span class="hide-menu">Đối tác</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="./DecideToEstablish" aria-expanded="false">
+                <i data-feather="tag" class="feather-icon"></i>
+                <span class="hide-menu">Q.Định thành lập</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="./ContactInfo" aria-expanded="false">
+                <i data-feather="tag" class="feather-icon"></i>
+                <span class="hide-menu">Thông tin liên hệ</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="./Embed" aria-expanded="false">
+                <i data-feather="tag" class="feather-icon"></i>
+                <span class="hide-menu">Nhúng Facebook</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="./Copyright" aria-expanded="false">
+                <i data-feather="tag" class="feather-icon"></i>
+                <span class="hide-menu">Bản quyền</span>
+            </a>
+        </li>
+        <li class="list-divider"></li> *@
+        @* ============================= END TRANG CHỦ =============================== *@
+
+    </ul>

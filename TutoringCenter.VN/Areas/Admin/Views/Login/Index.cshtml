@@ -1,0 +1,80 @@
+﻿@using TutoringCenter.VN.Models
+@model User
+@{
+    ViewData["Title"] = "LOGIN";
+    Layout = "../Shared/AuthenticationLayout.cshtml";
+}
+
+<div class="main-wrapper">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Login box.scss -->
+    <!-- ============================================================== -->
+    <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
+         style="background:url(/Landing/assets/img/shape/violet-evergarden-wallpaper.jpg) no-repeat center center; background-position: left">
+        <div class="auth-box row">
+            <div class="col-lg-5 col-md-5 modal-bg-img">
+                <img src="~/Landing/assets/img/shape/say-shape-left.png" class="say-shape1 rotateme d-none d-xl-block">
+                <img src="~/Landing/assets/img/logo/logo.png" class="logo_inrotate">
+            </div>
+            <div class="col-lg-7 col-md-7 bg-white">
+                <div class="p-3">
+                    @* <div class="text-center">
+                            <img src="assets/images/big/icon.png" alt="wrapkit">
+                        </div> *@
+                    <h2 class="mt-3 text-center">ĐĂNG NHẬP</h2>
+                    <p class="text-center" style="font-size: 12px;">
+                        @if (ViewBag.notification == null)
+                        {
+                            Html.Raw("Nhập tài khoản và mật khẩu của bạn để truy cập trang quản trị.");
+                        }
+                        else
+                        {
+                            Html.Raw(ViewBag.notification);
+                        }
+                    </p>
+                    <form class="mt-4" method="post" asp-action="Login" asp-controller="Login">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="text-dark" for="uname">Tên đăng nhập</label>
+                                    <input class="form-control" id="uname" type="text"
+                                           asp-for="Username"
+                                           placeholder="Nhập tên đăng nhập">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="text-dark" for="pwd">Mật khẩu</label>
+                                    <input class="form-control" id="pwd" type="password"
+                                           asp-for="EncryptPassword"
+                                           placeholder="Nhập mật khẩu">
+                                </div>
+                            </div>
+                            <div class="col-lg-12 text-center">
+                                <button type="submit" class="btn btn-block btn-violet">Đăng nhập</button>
+                            </div>
+                            @* <div class="col-lg-12 text-center mt-5">
+                                    Don't have an account? <a href="#" class="text-danger">Sign Up</a>
+                                </div> *@
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Login box.scss -->
+    <!-- ============================================================== -->
+</div>

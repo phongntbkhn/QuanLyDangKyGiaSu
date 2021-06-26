@@ -1,0 +1,111 @@
+﻿@using Microsoft.AspNetCore.Http
+@model IEnumerable<TutoringCenter.VN.Models.NewsCategory>
+@{
+    IEnumerable<CommonQuestion> commonQuestions = ViewBag.commonQuestions;
+
+    Layout = null;
+
+    var id = Context.Session.GetString("_session_id");
+    var user_name = Context.Session.GetString("_session_name");
+    var role_home = Context.Session.GetString("_session_role");
+    var id_person = Context.Session.GetString("_session_personid");
+}
+
+<div class="main-menu f-right d-none d-lg-block">
+    <nav class="menu">
+        <ul id="navigation">
+            <li><a href="/Home">Trang chủ</a></li>
+            <li><a href="/Teacher">Gia sư</a></li>
+            <li>
+                <a href="#"> Lớp học</a>
+                <ul class="submenu">
+                    <li>
+                        <a href="/LopHoc/Index?IdKhoi=1">Lớp 1</a>
+                    </li>
+                    <li>
+                        <a href="/LopHoc/Index?IdKhoi=2">Lớp 2</a>
+                    </li>
+                    <li>
+                        <a href="/LopHoc/Index?IdKhoi=3">Lớp 3</a>
+                    </li>
+                    <li>
+                        <a href="/LopHoc/Index?IdKhoi=4">Lớp 4</a>
+                    </li>
+                    <li>
+                        <a href="/LopHoc/Index?IdKhoi=5">Lớp 5</a>
+                    </li>
+                    <li>
+                        <a href="/LopHoc/Index?IdKhoi=6">Lớp 6</a>
+                    </li>
+                    <li>
+                        <a href="/LopHoc/Index?IdKhoi=7">Lớp 7</a>
+                    </li>
+                    <li>
+                        <a href="/LopHoc/Index?IdKhoi=8">Lớp 8</a>
+                    </li>
+                    <li>
+                        <a href="/LopHoc/Index?IdKhoi=9">Lớp 9</a>
+                    </li>
+                    <li>
+                        <a href="/LopHoc/Index?IdKhoi=10">Lớp 10</a>
+                    </li>
+                    <li>
+                        <a href="lopHoc/Index?IdKhoi=11">Lớp 11</a>
+                    </li>
+                    <li>
+                        <a href="lopHoc/Index?IdKhoi=12">Lớp 12</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Tin khác</a>
+                <ul class="submenu">
+                    @foreach (TutoringCenter.VN.Models.NewsCategory newsCategory in Model)
+                    {
+                        <li><a href="/NewsCategory/@newsCategory.GetPath()">@newsCategory.Name</a></li>
+                    }
+                </ul>
+            </li>
+            <li>
+                <a href="#">Góc giải đáp</a>
+                <ul class="submenu">
+                    @foreach (TutoringCenter.VN.Models.CommonQuestion commonQuestion in commonQuestions)
+                    {
+                        <li><a href="/CommonQuestion/@commonQuestion.GetPath()">@commonQuestion.Title</a></li>
+                    }
+                </ul>
+            </li>
+            <li>
+                <a href="#">Thông tin</a>
+                <ul class="submenu">
+                    <li><a href="/AboutUs">Về chúng tôi</a></li>
+                    <li><a href="/Contact">Liên hệ ngay</a></li>
+                </ul>
+            </li>
+            @if (string.IsNullOrEmpty(user_name))
+            {
+                <li><a href="/Account/Login">Login</a></li>
+            }
+            else
+            {
+                <li>
+                    <a href="#">Chào mừng: @user_name</a>
+                    <ul class="submenu">
+                        <li><a href="/Account/Logout">Đăng xuất</a></li>
+                        @if (role_home.Equals("2"))
+                        {
+                            <li><a href="/Teacher/DangKyGiaSu?id=@id_person">Cập nhật thông tin</a></li>
+                            <li><a asp-controller="LopHoc" asp-action="Create">Tạo lớp học</a></li>
+                            <li><a href="/LopHoc/DanhSachLop?idGiaSu=@id_person">Danh sách lớp</a></li>
+                        }
+                        @if (role_home.Equals("4"))
+                        {
+                            <li><a href="/Student/DangKyHocSinh?id=@id_person">Cập nhật thông tin</a></li>
+                        }
+                    </ul>
+                </li>
+            }
+
+        </ul>
+    </nav>
+</div>

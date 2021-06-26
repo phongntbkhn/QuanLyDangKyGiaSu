@@ -1,0 +1,192 @@
+﻿@using TutoringCenter.VN.Models
+@model Feedback
+
+@{
+    News currentPost = ViewBag.currentPost;
+    Layout = "~/Views/Shared/_MetaLayout.cshtml";
+    ViewData["Title"] = currentPost.Title;
+}
+<style>
+
+    .text-line {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* number of lines to show */
+        -webkit-box-orient: vertical;
+    }
+</style>
+<!-- breadcrumb start-->
+<section class="breadcrumb_section" style="background: url('@currentPost.Image');background-position: center;background-repeat: no-repeat;background-size: cover; height: 500px; margin-top: 100px">
+    <div class="head_opacity_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner text-center">
+                        <div class="breadcrumb_iner_item">
+                            <h2>@currentPost.Title</h2>
+                            <p>Trang chủ<span> > </span>@currentPost.NewsCategory.Name</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb start-->
+<!--================Blog Area =================-->
+<section class="blog_area single-post-area section_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 posts-list">
+                <div class="single-post">
+                    <div class="feature-img">
+                        <img class="img-fluid" src="@currentPost.Image" alt="" style="width: 100%;">
+                    </div>
+                    <div class="blog_details">
+                        <h2>
+                            @currentPost.Title
+                        </h2>
+                        <ul class="blog-info-link mt-3 mb-4">
+                            <li><a href="#"><i class="far fa-user"></i>@currentPost.Tags</a></li>
+                            <li><a href="#"><i class="far fa-comments"></i> @(currentPost.CreateAt!=null?((DateTime)currentPost.CreateAt).ToString("HH:mm dd/MM/yyyy"):"MITECHCENTER.VN")</a></li>
+                        </ul>
+                        @Html.Raw(currentPost.Content);
+                    </div>
+                </div>
+                <div class="navigation-top">
+                    <div class="d-sm-flex justify-content-between text-center">
+                        <p class="like-info"><span class="align-middle"><i class="far fa-heart"></i></span>Chia sẻ lên mạng xã hội</p>
+                        <div class="col-sm-4 text-center my-2 my-sm-0">
+                            <!-- <p class="comment-count"><span class="align-middle"><i class="far fa-comment"></i></span> 06 Comments</p> -->
+                        </div>
+                        <ul class="social-icons">
+                            <li><a href="#"><i class="ti-facebook"></i></a></li>
+                            <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
+                            <li><a href="#"><i class="ti-instagram"></i></a></li>
+                            <li><a href="#"><i class="ti-skype"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="navigation-area">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                                @if (ViewBag.previousNews != null)
+                                {
+                                    <div class="thumb">
+                                        <a href="#">
+                                            <div class="img-fluid" style="background: url(@(((News)ViewBag.previousNews).Image));background-position: center;background-repeat: no-repeat;background-size: cover;width:60px;height:60px;"></div>
+                                        </a>
+                                    </div>
+                                    <div class="arrow">
+                                        <a href="#">
+                                            <span class="lnr text-white ti-arrow-left"></span>
+                                        </a>
+                                    </div>
+                                    <div class="detials">
+                                        <p>Bài trước</p>
+                                        <a href="/Post/@(((News)ViewBag.previousNews).GetPath())">
+                                            <h4 class="text-line">@(((News)ViewBag.previousNews).Title)</h4>
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+                                @if (ViewBag.nextNews != null)
+                                {
+                                    <div class="detials">
+                                        <p>Bài tiếp</p>
+                                        <a href="/Post/@(((News)ViewBag.nextNews).GetPath())">
+                                            <h4 class="text-line">@(((News)ViewBag.nextNews).Title)</h4>
+                                        </a>
+                                    </div>
+                                    <div class="arrow">
+                                        <a href="#">
+                                            <span class="lnr text-white ti-arrow-right"></span>
+                                        </a>
+                                    </div>
+                                    <div class="thumb">
+                                        <a href="#">
+                                            <div class="img-fluid" style="background: url(@(((News)ViewBag.nextNews).Image));background-position: center;background-repeat: no-repeat;background-size: cover;width:60px;height:60px;"></div>
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="blog_right_sidebar">
+                    <aside class="single_sidebar_widget search_widget">
+                        <form action="#">
+                            <div class="form-group">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder='Từ khóa...'
+                                           onfocus="this.placeholder = ''" onblur="this.placeholder = 'Từ khóa...'">
+                                    <div class="input-group-append">
+                                        <button class="btn" type="button"><i class="ti-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="w-100 btn" type="submit">Tìm kiếm</button>
+                        </form>
+                    </aside>
+                    <aside class="single_sidebar_widget post_category_widget">
+                        <h4 class="widget_title">Danh mục</h4>
+                        <ul class="list cat-list">
+                            @foreach (NewsCategory category in ViewBag.newCategories)
+                            {
+                                <li>
+                                    <a href="/newsCategory/@category.GetPath()" class="d-flex">
+                                        <p>@category.Name</p>
+                                        @*<p>(37)</p>*@
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </aside>
+                    <aside class="single_sidebar_widget popular_post_widget">
+                        <h3 class="widget_title">Bài viết gần đây</h3>
+                        @foreach (News news in ViewBag.news)
+                        {
+                            <div class="media post_item">
+                                <div style="background: url('@news.Image');background-position: center;background-repeat: no-repeat;background-size: cover;width:80px;height:80px;"></div>
+                                <div class="media-body">
+                                    <a href="/Post/@news.GetPath()">
+                                        <h3 class="text-line">@news.Description</h3>
+                                    </a>
+                                    <p>@news.NewsCategory.Name</p>
+                                </div>
+                            </div>
+                        }
+                    </aside>
+                    @if (currentPost.Tags != null && currentPost.Tags.Length > 0)
+                    {
+                        <aside class="single_sidebar_widget tag_cloud_widget">
+                            <h4 class="widget_title">Các Tag</h4>
+                            <ul class="list">
+                                @foreach (string tag in currentPost.Tags.Split(","))
+                                {
+                                    <li>
+                                        <a href="#">@(tag.Trim())</a>
+                                    </li>
+                                }
+                            </ul>
+                        </aside>
+                    }
+                    @*<aside class="single_sidebar_widget newsletter_widget">
+                            <h4 class="widget_title">Nhận tin từ chúng tôi</h4>
+                            <form action="#">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" onfocus="this.placeholder = ''"
+                                           onblur="this.placeholder = 'Nhập Email vào đây'" placeholder='Nhập Email vào đây' required>
+                                </div>
+                                <button class="button rounded-0 primary-bg text-white w-100 btn_1" type="submit">Theo dõi</button>
+                            </form>
+                        </aside>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

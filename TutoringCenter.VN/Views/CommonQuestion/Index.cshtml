@@ -1,0 +1,18 @@
+﻿@using TutoringCenter.VN.Models
+@model CommonQuestion
+@{
+    Layout = "~/Views/Shared/_MetaLayout.cshtml";
+    ViewData["Title"] = Model.Title;
+    var commonQuestion = ViewBag.commonQuestion;
+}
+<section class="commonQuestion-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                    <h2 style="color: #ffffff; background-color: #802eb7">@commonQuestion.Title<strong></strong></h2>
+                    @Html.Raw(@commonQuestion.Content)
+            </div>
+        </div>
+    </div>
+</section>
+

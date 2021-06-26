@@ -1,0 +1,134 @@
+﻿@using TutoringCenter.VN.Models;
+@model Course
+@{
+    var teacher = (Teacher)ViewBag.teacher;
+    ViewData["Title"] = "SỬA LỚP HỌC";
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-7 align-self-center">
+            <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Sửa lớp học</h4>
+            <div class="d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb m-0 p-0">
+                        <li class="breadcrumb-item"><a href="." class="text-muted">Admin</a></li>
+                        <li class="breadcrumb-item text-muted active" aria-current="page">Lớp học</li>
+                        @if (teacher != null)
+                        {
+                            <li class="breadcrumb-item text-muted active" aria-current="page">Gia sư: @teacher.DisplayName</li>
+                        }
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="col-5 align-self-center">
+            <div class="customize-input float-right">
+                @* <button type="button" class="btn waves-effect waves-light btn-danger btn-rounded px-5" onclick="window.history.back()">Hủy</button> *@
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">SỬA LỚP HỌC</h4>
+                    <form method="post" enctype="multipart/form-data">
+                        @Html.HiddenFor(x => x.CId)
+                        @Html.HiddenFor(x => x.TId)
+                        @Html.HiddenFor(x => x.CreateAt)
+                        @Html.HiddenFor(x => x.UpdateAt)
+                        <h4 class="card-title mt-3">Tên lớp học</h4>
+                        <input asp-for="Name" type="text" class="form-control" id="prenametext" placeholder="Tên lớp học">
+                        <h4 class="card-title mt-3">Học phí (VNĐ)</h4>
+                        <input asp-for="Price" type="number" class="form-control" id="prenametext" placeholder="Học phí (VNĐ)">
+                        <h4 class="card-title mt-3">Thời gian diễn ra</h4>
+                        <input asp-for="LearningTime" type="text" class="form-control" id="prenametext" placeholder="Thời gian diễn ra">
+                        <h4 class="card-title mt-3">Lịch học</h4>
+                        <input asp-for="Schedule" type="text" class="form-control" id="prenametext" placeholder="Lịch học">
+                        <h4 class="card-title mt-3">Chi tiết</h4>
+                        <textarea asp-for="Detail" class="form-control" id="cDetail" rows="3"></textarea>
+                        <h4 class="card-title mt-3">Mô tả ngắn</h4>
+                        <textarea asp-for="Description" class="form-control" rows="3" placeholder="Mô tả..."></textarea>
+                        <h4 class="card-title mt-3">Ảnh tiêu biểu</h4>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Hình ảnh</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="Image">
+                                <label class="custom-file-label" for="inputGroupFile01">Chọn tệp tin</label>
+                            </div>
+                        </div>
+                        @*<input asp-for="Image" type="text" class="form-control" id="prenametext" placeholder="Đường dẫn ảnh tiêu biểu">*@
+                        @* <div class="input-group mt-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect01">Mục tin</label>
+                                </div>
+                                <select class="custom-select" asp-for="ncId" asp-items="@ViewBag.newsCategories">
+                                </select>
+                            </div> *@
+                        <button type="submit" class="btn btn-block btn-rounded btn-success mt-5">CẬP NHẬT</button>
+                        @Html.Raw(ViewBag.notification)
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+@section Scripts {
+    <!--This page plugins -->
+    <script src="assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="dist/js/pages/datatable/datatable-basic.init.js"></script>
+    <script src="dist/js/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+    function goBack() {
+            window.history.back()
+        }
+        $(document).ready(function () {
+            var path = document.location.pathname;
+            var directory = path.substring(path.indexOf('/'), path.lastIndexOf('/'));
+            directory = directory.substring(directory.indexOf('/'), directory.lastIndexOf('/'));
+            CKEDITOR.replace("cDetail", {
+                height: 600,
+                filebrowserUploadUrl: `${directory}/ImageUpload`,
+                filebrowserUploadMethod: "form"
+            });
+        });</script>
+}
+<style>
+
+    .table td, .table th {
+        vertical-align: middle;
+    }
+
+    .custom-select {
+        color: #000;
+    }
+</style>

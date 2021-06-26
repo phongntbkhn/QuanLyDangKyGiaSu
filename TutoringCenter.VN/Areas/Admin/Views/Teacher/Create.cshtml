@@ -1,0 +1,105 @@
+﻿@using TutoringCenter.VN.Models
+@model Teacher
+@{
+    ViewData["Title"] = "THÊM GIA SƯ";
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-7 align-self-center">
+            <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Thêm gia sư</h4>
+            <div class="d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb m-0 p-0">
+                        <li class="breadcrumb-item"><a href="." class="text-muted">Admin</a></li>
+                        <li class="breadcrumb-item text-muted active" aria-current="page">Trang chủ</li>
+                        <li class="breadcrumb-item text-muted active" aria-current="page">Gia sư</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="col-5 align-self-center">
+            <div class="customize-input float-right">
+                <button type="button" class="btn waves-effect waves-light btn-danger btn-rounded px-5" onclick="window.history.back()">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">THÊM GIA SƯ</h4>
+                    <form method="post" asp-action="Upload" asp-controller="Teacher" enctype="multipart/form-data">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Hình ảnh</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="avatar">
+                                <label class="custom-file-label" for="inputGroupFile01">Chọn tệp tin</label>
+                            </div>
+                        </div>
+                        <h4 class="card-title mt-3">Họ tên gia sư</h4>
+                        <input asp-for="DisplayName" type="text" class="form-control" id="prenametext" placeholder="Họ tên gia sư">
+                        <h4 class="card-title mt-3">Mô tả</h4>
+                        <textarea asp-for="Description" class="form-control" rows="2" id="tDescription"></textarea>
+                        <button type="submit" class="btn btn-block btn-rounded btn-success mt-5">CẬP NHẬT</button>
+                        @Html.Raw(ViewBag.notification)
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+@section Scripts {
+    <!--This page plugins -->
+    <script src="assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="dist/js/pages/datatable/datatable-basic.init.js"></script>
+    <script src="dist/js/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        function goBack() {
+            window.history.back()
+        }
+        $(document).ready(function () {
+            var path = document.location.pathname;
+            var directory = path.substring(path.indexOf('/'), path.lastIndexOf('/'));
+            directory = directory.substring(directory.indexOf('/'), directory.lastIndexOf('/'));
+            CKEDITOR.replace("tDescription", {
+                height: 600,
+                filebrowserUploadUrl: `${directory}/ImageUpload`,
+                filebrowserUploadMethod: "form"
+            });
+        });</script>
+}
+<style>
+
+    .table td, .table th {
+        vertical-align: middle;
+    }
+</style>

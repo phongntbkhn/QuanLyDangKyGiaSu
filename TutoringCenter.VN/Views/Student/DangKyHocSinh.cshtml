@@ -1,0 +1,95 @@
+﻿@using TutoringCenter.VN.Models
+@model Student
+@{
+    Layout = "~/Views/Shared/_MetaLayout.cshtml";
+    ViewData["Title"] = "Đăng ký học sinh";
+    string message = ViewData["ERROR_NOTIFY"] as string;
+}
+
+<style>
+    .name-title {
+        margin-top: 20px;
+    }
+
+    div#relative {
+        position: relative;
+        padding-bottom: 70px;
+        padding-top: 10px;
+    }
+
+    div#thisDiv {
+        position: absolute;
+        left: 50%;
+        transform: translateX(50%);
+        -webkit-transform: translateX(-50%);
+    }
+</style>
+
+<div class="our-customer section-padd-top30">
+    <div class="container-fluid">
+
+        <div class="our-customer-wrapper">
+            <!-- Section Tittle -->
+            <div class="row d-flex justify-content-center">
+                <div class="col-xl-12">
+                    <div>
+                        <h2 style="color: #ffffff; background-color: #802eb7"><strong>Cập nhật thông tin học sinh</strong></h2>
+                    </div>
+                </div>
+                <div class="col-xl-8">
+                    <div class="section-slogan">
+                        <div class="text-top">Học - học nữa - học mãi</div>
+                    </div>
+                </div>
+            </div>
+            <form method="post" asp-action="DangKyHocSinh" asp-controller="Student">
+                <label style="color:red">@message</label>
+                <input asp-for="SId" type="text" class="form-control" hidden>
+                <h5 class="name-title">Tên học sinh</h5>
+                <input asp-for="TenHocSinh" type="text" class="form-control" placeholder="Tên học sinh">
+                <h5 class="name-title">Số điện thoại</h5>
+                <input asp-for="SoDienThoai" type="text" class="form-control" placeholder="Số điện thoại">
+                <h5 class="name-title">Lớp</h5>
+                <input asp-for="Lop" type="text" class="form-control" placeholder="Lớp">
+                <h5 class="name-title">Tên phụ huynh</h5>
+                <input asp-for="TenPhuHuynh" type="text" class="form-control" placeholder="Tên phụ huynh">
+                <h5 class="name-title">SĐT phụ huynh</h5>
+                <input asp-for="SdtPhuHuynh" type="text" class="form-control" placeholder="SĐT phụ huynh">
+                <h5 class="name-title">Ngày sinh</h5>
+                <input asp-for="NgaySinh" type="text" class="form-control" placeholder="Ngày sinh">
+                <h5 class="name-title">Nơi ở hiện tại</h5>
+                <input asp-for="NoiOHienTai" type="text" class="form-control" placeholder="Nơi ở hiện tại">
+
+                <div id="relative">
+                    <div id="thisDiv">
+                        <button type="submit" class="btn btn-success">CẬP NHẬT</button>
+                    </div>
+                </div>
+                @Html.Raw(ViewBag.notification)
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <!--This page plugins -->
+    <script type="text/javascript">
+        function goBack() {
+            window.history.back()
+        }
+        $(document).ready(function () {
+            var path = document.location.pathname;
+            var directory = path.substring(path.indexOf('/'), path.lastIndexOf('/'));
+            directory = directory.substring(directory.indexOf('/'), directory.lastIndexOf('/'));
+            CKEDITOR.replace("tDescription", {
+                height: 600,
+                filebrowserUploadUrl: `${directory}/ImageUpload`,
+                filebrowserUploadMethod: "form"
+            });
+        });</script>
+}
+<style>
+
+    .table td, .table th {
+        vertical-align: middle;
+    }
+</style>

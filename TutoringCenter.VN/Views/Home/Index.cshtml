@@ -1,0 +1,256 @@
+﻿@{
+    Layout = "~/Views/Shared/_MetaLayout.cshtml";
+    ViewData["Title"] = "TRANG CHỦ";
+    IEnumerable<Feedback> feedbacks = ViewBag.feedbacks;
+    IEnumerable<Teacher> teacher = ViewBag.teacher;
+    IEnumerable<AboutUs> aboutUs = ViewBag.aboutUs;
+}
+
+    <main>
+        <!-- Slider Area Start-->
+        <div class="slider-area">
+            <div class="slider-active">
+                <div class="single-slider slider-height slider-padding d-flex align-items-center">
+                    <div class="head_bg">
+                        <div class="head_opacity_bg">
+                            <div class="container">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-lg-12 col-md-12 ">
+                                        <div class="hero__caption">
+                                            <span data-animation="fadeInUp" data-delay=".4s">Tạo nên giá trị sống</span>
+                                            <h1 data-animation="fadeInUp" data-delay=".6s">Trung tâm gia sư<br>Appco</h1>
+                                            <p data-animation="fadeInUp" data-delay=".8s">
+                                                Với phương châm “Thấu hiểu học sinh là
+                                                bước đi đầu tiên của người làm thầy” chúng tôi luôn lấy chữ Tâm và chữ Đức của
+                                                người làm thầy để truyền đạt lại kiến thức cho học sinh, giúp học sinh đạt được
+                                                kết quả cao nhất trong học tập và đạt được thành công trong đời sống.
+                                            </p>
+                                            <!-- Slider btn -->
+                                            <div class="slider-btns">
+                                                <!-- Hero-btn -->
+                                                <a data-animation="fadeInLeft" data-delay="1.0s" href="Contact"
+                                                   class="btn radius-btn">Liên hệ ngay</a>
+                                                <!-- Video Btn -->
+                                                <a data-animation="fadeInRight" data-delay="1.0s"
+                                                   class="popup-video video-btn ani-btn" href="#">
+                                                    <i class="fas fa-play"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Slider Area End -->
+        <!-- Best Features Start -->
+        <section class="best-features-area section-padd4">
+            <div class="container">
+                <div class="row justify-content-end">
+                    <div class="col-xl-8 col-lg-10">
+                        <!-- Section Tittle -->
+                        <div class="row">
+                            <div class="col-lg-10 col-md-10">
+                                <div class="section-tittle">
+                                    <h2>Về chúng tôi</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Section caption -->
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12">
+                                <div class="single-features mb-70">
+                                    <div class="features-caption">
+                                        @*<h3 class="text-justify">Trung tâm gia sư Appco nhận dạy kèm tại nhà</h3>
+                                        <p style="font-size:18px">Tất cả các môn học từ lớp 1 đến lớp 12: Toán, Lý, Hoá, Anh, Văn, Sinh, Sử, Địa...</p>
+                                        <p style="font-size:18px">Giao tiếp tiếng Anh, Pháp, Trung, Nhật, Hàn, Đức...</p>
+                                        <p style="font-size:18px">Các môn năng khiếu : vẽ, đàn, organ, guitar, piano...</p>
+                                        <p style="font-size:18px">Tất cả các môn học từ lớp 1 đến lớp 12: Toán, Lý, Hoá, Anh, Văn, Sinh, Sử, Địa...</p>
+                                        <p style="font-size:18px">Tin học văn học, Autocad...</p>*@
+                                        @for (int i = 0; i < aboutUs.Count(); i++)
+                                        {
+                                            AboutUs aboutUss = aboutUs.ElementAt(i);
+                                            @Html.Raw(@aboutUss.Title);
+                                        }
+                                        <a href="AboutUs" class="btn radius-btn">Tìm hiểu thêm</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Shpe -->
+            <div class="features-shpae d-none d-lg-block">
+                <img src="~/Landing/assets/img/shape/aboutus.jpeg" alt="" width="660px" height="510px"
+                     style="border-radius: 50%;">
+            </div>
+        </section>
+        <!-- Best Features End -->
+        <!-- Best Pricing Start -->
+        <section class="best-pricing pricing-padding" data-background="/Landing/assets/img/gallery/best_pricingbg.jpg">
+            <div class="container">
+                <!-- Section Tittle -->
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="section-tittle text-center">
+                            <h2>Lời tri ân</h2>
+                        </div>
+                    </div>
+                </div>
+                <section id="" class="block feedback-section wow fadeInDown clearfix  animated"
+                         style="visibility: visible; animation-name: fadeInDown;">
+                    <div class="progress-wrap">
+                        <div id="shiva"><span class="bar-width"><span class="count">98</span>%</span></div>
+                        <div class="progress-content">
+                            <h3>Phụ huynh hài lòng với dịch vụ của chúng tôi</h3>
+                            <div class="progress">
+                                <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="40"
+                                     class="progress-bar color1" role="progressbar" style="width: 98%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Section caption -->
+                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="owl-item" style="width: 970px;">
+                                <div class="item-4 item-odd">
+                                    <div class="views-field views-field-field-image">
+                                        <div class="field-content">
+                                            <img typeof="foaf:Image"
+                                                 src="~/Landing/assets/img/blog/slide_thumb_1.png"
+                                                 width="215" height="215" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="views-field views-field-title">
+                                        <span class="views-label views-label-title">Phụ huynh: </span> <span class="field-content">
+                                            <a href="/tran-hua-tho-anh">
+                                                Trần Hứa Thọ
+                                                Anh
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <div class="views-field views-field-body">
+                                        <div class="field-content">
+                                            Tôi là Thọ Anh, quản lý của một Trung Tâm Tiếng Anh,
+                                            qua Trung Tâm Gia Sư Appco, tôi đã có được đội ngũ giáo viên tiếng Anh
+                                            rất tốt về kinh nghiệm và nhiệt huyết với nghề. Tôi rất hài lòng và&nbsp;sẽ
+                                            tiếp tục hợp tác lâu dài với Trung Tâm Gia Sư Appco.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="owl-item" style="width: 970px;">
+                                <div class="item-4 item-odd">
+                                    <div class="views-field views-field-field-image">
+                                        <div class="field-content">
+                                            <img typeof="foaf:Image"
+                                                 src="~/Landing/assets/img/about/about_lft.png"
+                                                 width="215" height="215" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="views-field views-field-title">
+                                        <span class="views-label views-label-title">Phụ huynh: </span> <span class="field-content">
+                                            <a href="/tran-hua-tho-anh">
+                                                Trương Quỳnh Anh
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <div class="views-field views-field-body">
+                                        <div class="field-content">
+                                            Tôi là Quỳnh Anh, quản lý của một Trung Tâm Ngữ Văn,
+                                            qua Trung Tâm Gia Sư Appco, tôi đã có được đội ngũ giáo viên Ngữ Văn
+                                            rất tốt về kinh nghiệm và nhiệt huyết với nghề. Tôi rất hài lòng và&nbsp;sẽ
+                                            tiếp tục hợp tác lâu dài với Trung Tâm Gia Sư Appco
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="owl-item" style="width: 970px;">
+                                <div class="item-4 item-odd">
+                                    <div class="views-field views-field-field-image">
+                                        <div class="field-content">
+                                            <img typeof="foaf:Image"
+                                                 src="~/Landing/assets/img/comment/comment_2.png"
+                                                 width="215" height="215" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="views-field views-field-title">
+                                        <span class="views-label views-label-title">Phụ huynh: </span> <span class="field-content">
+                                        <a href="/tran-hua-tho-anh">Phạm Văn Đồng</a>
+                                        </span>
+                                    </div>
+                                    <div class="views-field views-field-body">
+                                        <div class="field-content">
+                                            Tôi là Đồng, quản lý của một Tiệm cắt tóc,
+                                            qua Trung Tâm Gia Sư Appco, tôi đã có được đội ngũ giáo viên tiếng Anh
+                                            rất tốt về kinh nghiệm và nhiệt huyết với nghề. Tôi rất hài lòng và&nbsp;sẽ
+                                            tiếp tục học tập lâu dài với Trung Tâm Gia Sư Appco.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Best Pricing End -->
+        <!-- Our Customer Start -->
+        <div class="our-customer section-padd-top30">
+            <div class="container-fluid">
+                <div class="our-customer-wrapper">
+                    <!-- Section Tittle -->
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-xl-8">
+                            <div class="section-tittle text-center">
+                                <h2 style="margin-bottom: 0 !important;">Gia sư của chúng tôi</h2>
+                            </div>
+                        </div>
+                        <div class="col-xl-8">
+                            <div class="section-slogan">
+                                <div class="text-top">Chu đáo - Nhiệt tình - Tận tâm</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        @for (int i = 0; i < teacher.Count(); i++)
+                        {
+                            Teacher teachers = teacher.ElementAt(i);
+
+                            <div class="col-4">
+                                <div class="single-customer mb-100">
+                                    <div class="what-img d-flex justify-content-center">
+                                        <img src="@teachers.Avatar" alt="" width="100%" height="100%">
+                                    </div>
+                                    <div class="what-cap text-center">
+                                        <h4><a href="#">@teachers.DisplayName</a></h4>
+                                        <a data-animation="fadeInLeft" data-delay="1.0s" href="/TeacherDetail/Index/@teachers.TId" class="btn radius-btn" tabindex="0" style="animation-delay: 1s;">Xem chi tiết</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Our Customer End -->
+    </main>
